@@ -1,3 +1,16 @@
+<?php
+    session_start();
+    if(!isset($_SESSION['numUtenti'])){
+        $users = 0; 
+        $_SESSION['numUtenti'] = $users;
+    }
+
+    if(!isset($_SESSION['guadagnoTot'])){
+        $entrate = 0; 
+        $_SESSION['guadagnoTot'] = $entrate;
+    }
+
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -9,6 +22,8 @@
   <body>
     <h1>Prezzi degli utenti</h1>
     <?php
+        $nUtenti = $_SESSION['numUtenti'];
+        $entrateTot = $_SESSION['guadagnoTot'];
         $prezzoAbbonamento = 45;
         $nomeUtente = $_GET['nomeUtente'];
         $etaUtente = $_GET['etaUtente'];
@@ -34,6 +49,9 @@
                 }
             }
         }
+        //aggiungo il prezzo dell'abbonamento agli incassi totali
+        $entrateTot = $entrateTot + $prezzoAbbonamento;
+        $_SESSION['guadagnoTot'] = $entrateTot;
       ?>
       <div class="w-50">
           <table class="table text-center table-bordered">
@@ -52,10 +70,16 @@
                 echo"<td>$nomeUtente</td>";
                 echo"<td>$etaUtente</td>";
                 echo"<td>$tipoPagamento</td>";
-                echo"<td>$prezzoAbbonamento</td>";
+                echo"<td>Il prezzo per un'anno è di  $prezzoAbbonamento €</td>";
+                $nUtenti++;
+                $_SESSION['numUtenti'] = $nUtenti; //aggiungo l'untente al conteggio
               ?>
               </tr>
           </table>
+
+          <div>
+              <a class="link-opacity-75" href='./statsPalestra.php'>Visualizza le statistiche della palestra</a>
+          </div>
       </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
