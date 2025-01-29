@@ -20,7 +20,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   </head>
   <body>
-    <h1>Prezzi degli utenti</h1>
+    <h1 class="text-danger text-center">Prezzi degli utenti</h1>
     <?php
         $nUtenti = $_SESSION['numUtenti'];
         $entrateTot = $_SESSION['guadagnoTot'];
@@ -53,7 +53,7 @@
         $entrateTot = $entrateTot + $prezzoAbbonamento;
         $_SESSION['guadagnoTot'] = $entrateTot;
       ?>
-      <div class="w-50">
+      <div class="w-50 mx-auto my-auto text-center">
           <table class="table text-center table-bordered">
               <tr>
                   <th colspan = "3">Dati inseriti nel form</th>
